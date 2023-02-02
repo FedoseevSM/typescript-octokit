@@ -3,15 +3,15 @@ import './style.css';
 import { Octokit } from "octokit"
 
 const octokit = new Octokit({
-  // auth: "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",
+  auth: "",
 })
 
 function createForkInOrganization() {
   octokit.rest.repos.createFork({
     owner: "FedoseevSM",
-    repo: "spa-template-vue-bootstrap-express-prisma",
+    repo: "BunJS-Example",
     organization: "forkpack",
-    name: "same-fork-repo-new-name2"
+    name: "same-fork-repo-new-name2222222"
   }).then((response => {
     console.log("repo forked to organization")
   }))
@@ -32,14 +32,14 @@ function createGHPagesInOrganization() {
   octokit.rest.repos.createPagesDeployment({
     owner: 'forkpack',
     repo: 'test-repo',
-    artifact_url: '',
-    pages_build_version,
-    oidc_token,
+    artifact_url: 'https://github.com/FedoseevSM/typescript-octokit/raw/8cea2656f44fc97ea6d9dd629a7108812e9b6394/deploy.zip',
+    pages_build_version: "1231313",
+    oidc_token: "13112312",
   }).then((response => {
     console.log("create repo in organization")
   }))
 }
-// createRepoInOrganization()
+// createGHPagesInOrganization()
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
