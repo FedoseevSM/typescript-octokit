@@ -3,7 +3,7 @@ import './style.css';
 import { Octokit } from "octokit"
 
 const octokit = new Octokit({
-  auth: "",
+  // auth: "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",
 })
 
 function createForkInOrganization() {
@@ -22,6 +22,19 @@ function createRepoInOrganization() {
   octokit.rest.repos.createInOrg({
     org: "forkpack",
     name: "test-repo",
+  }).then((response => {
+    console.log("create repo in organization")
+  }))
+}
+// createRepoInOrganization()
+
+function createGHPagesInOrganization() {
+  octokit.rest.repos.createPagesDeployment({
+    owner: 'forkpack',
+    repo: 'test-repo',
+    artifact_url: '',
+    pages_build_version,
+    oidc_token,
   }).then((response => {
     console.log("create repo in organization")
   }))
