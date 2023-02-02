@@ -33,8 +33,8 @@ function createGHPagesInOrganization() {
     owner: 'forkpack',
     repo: 'test-repo',
     artifact_url: 'https://github.com/FedoseevSM/typescript-octokit/raw/8cea2656f44fc97ea6d9dd629a7108812e9b6394/deploy.zip',
-    pages_build_version: "1231313",
-    oidc_token: "13112312",
+    pages_build_version: "weqeqweqwe",
+    oidc_token: "qweqeqweqweqwe",
   }).then((response => {
     console.log("create repo in organization")
   }))
