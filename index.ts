@@ -6,11 +6,16 @@ const octokit = new Octokit({
   auth: "",
 })
 
-async function getUser(){
-const {data} = await octokit.request("/user");
-console.log(data)
+function createForkInOrganization() {
+  const repo = octokit.rest.repos.createFork({
+    owner: "FedoseevSM",
+    repo: "spa-template-vue-bootstrap-express-prisma",
+    organization: "forkpack"
+  }).then((response => {
+    console.log("repo forked to organization")
+  }))
 }
-getUser()
+// createForkInOrganization()
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
