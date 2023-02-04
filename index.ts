@@ -1,9 +1,11 @@
 // Import stylesheets
 import './style.css';
 import { Octokit } from "octokit"
+// @ts-ignore
+import * as fs from "fs"
 
 const octokit = new Octokit({
-  auth: "",
+  // auth: "",
 })
 
 function createForkInOrganization() {
@@ -40,6 +42,28 @@ function createGHPagesInOrganization() {
   }))
 }
 // createGHPagesInOrganization()
+
+async function uploadZip(owner, repo, releaseId, filePath, name) {
+  const { data: release } = await octokit.repos.getRelease({
+    owner,
+    repo,
+    release_id: releaseId
+  });
+
+  const uploadUrl = release.upload_url;
+
+  const file = fs.createReadStream(filePath);
+
+  const { data: asset } = await octokit.repos.uploadAsset({
+    url: uploadUrl,
+    file,
+    name
+  });
+
+  console.log(`Uploaded ${asset.name} to release ${release.name}`);
+}
+
+// uploadZip("fakeuser", "fakerepo", 123456, "/path/to/your/zip/file.zip", "file.zip");
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
